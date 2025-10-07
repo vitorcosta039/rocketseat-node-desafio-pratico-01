@@ -6,8 +6,6 @@ const server = http.createServer(async (req, res) => {
 
 
     const route = routes.find(route => {
-            console.log(method, url)
-
         return route.method === method && route.path.test(url)
     })
 
