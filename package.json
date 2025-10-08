@@ -10,5 +10,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.15.1"
+  "packageManager": "pnpm@10.15.1",
+  "dependencies": {
+    "csv-parse": "^6.1.0"
+  }
 }
