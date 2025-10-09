@@ -1,7 +1,6 @@
 import { randomUUID } from 'node:crypto'
 import {buildRoutePath} from "./utils/build-route-path.js";
 import {Database} from "./database.js";
-import {processCsv} from "./upload.js";
 
 const database = new Database()
 
@@ -105,26 +104,6 @@ export const routes = [
                 completed_at: new Date(),
                 updated_at: new Date()
             })
-
-            return res.writeHead(204).end()
-        }
-    },
-    {
-        method: 'POST',
-        path: buildRoutePath('/tasks/upload'),
-        handler: async (req, res) => {
-            const records = await processCsv()
-
-            for (const task of records) {
-                const taskDatabase = {
-                    id: randomUUID(),
-                    title: task[0],
-                    description: task[1],
-                    done: task[2] === "true"
-                }
-
-                database.insert('tasks', taskDatabase)
-            }
 
             return res.writeHead(204).end()
         }
